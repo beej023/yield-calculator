@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>
-		<h2>Profit Calculator</h2>
 		<h2>Team DH</h2>
 	</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,6 +69,12 @@
             button { font-size: 16px; width: 100%; margin-bottom: 10px; }
             pre { font-size: 13px; }
         }
+		.small-tip {
+    		font-size: 12px;  /* Smaller font */
+    		color: #888;      /* Light gray color */
+    		text-align: center;  /* Center align it if you want */
+    		margin-top: 20px;  /* Add some space from the previous text */
+}
     </style>
 </head>
 
@@ -157,12 +162,13 @@ function clearInputs() {
     document.getElementById("output").textContent = "";
 }
 </script>
-	<p>This calculator is just shows the average possible profit of your capital in given days.</p>
-	<p>Beej23</p>
+	<p class = "small-tip">This calculator just shows the average possible profit of your capital in given days.</p>
+	<p class = "small-tip">Beej23</p>
 </footer>
 
 
 </html>
+
 
 
 
