@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yield Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #005fcc;
+        }
+
+        pre {
+            background: #1c1c1c;
+            color: #00ff7f;
+            padding: 15px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 20px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+
+            pre {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Yield Calculator</h2>
+
+    <label>Number of days:</label>
+    <input type="number" id="days" min="1">
+
+    <label>Initial capital:</label>
+    <input type="number" id="capital" step="0.01">
+
+    <button onclick="calculate()">Compute</button>
+</div>
+
+<h3>Results:</h3>
+<pre id="output"></pre>
+
+<script>
+function calculate() {
+    let days = parseInt(document.getElementById("days").value);
+    let capital = parseFloat(document.getElementById("capital").value);
+
+    let output = "";
+    let day = 1;
+
+    while (days > 0) {
+        output += `Day ${day}\n`;
+
+        // Phase 1
+        let i1 = capital * 0.01;
+        let b1 = i1 * 0.75;
+        capital += b1;
+        output += `Phase 1 capital = ${capital.toFixed(2)}: profit = ${b1.toFixed(2)}\n`;
+
+        // Phase 2
+        let i2 = capital * 0.01;
+        let b2 = i2 * 0.75;
+        capital += b2;
+        output += `Phase 2 capital = ${capital.toFixed(2)}: profit = ${b2.toFixed(2)}\n\n`;
+
+        day++;
+        days--;
+    }
+
+    output += `Final capital after ${day - 1} days = ${capital.toFixed(2)}`;
+
+    document.getElementById("output").textContent = output;
+}
+</script>
+
+</body>
+</html>
