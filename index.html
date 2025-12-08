@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>
-		<h2>Team DH</h2>
-	</title>
+    <title>Team DH</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
@@ -13,7 +11,7 @@
             padding: 20px;
             background: #f0f0f0;
         }
-	
+    
         .container {
             max-width: 500px;
             margin: auto;
@@ -27,14 +25,21 @@
             text-align: center;
         }
 
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
         input {
             width: 100%;
             padding: 12px;
             font-size: 16px;
-            margin-top: 8px;
-            margin-bottom: 16px;
+            margin-top: 5px;
+            margin-bottom: 10px;
             border-radius: 6px;
             border: 1px solid #aaa;
+            box-sizing: border-box; /* Prevents overlap */
         }
 
         button {
@@ -46,7 +51,7 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            margin-top: 5px;
+            margin-top: 10px;
         }
 
         button:hover {
@@ -69,12 +74,13 @@
             button { font-size: 16px; width: 100%; margin-bottom: 10px; }
             pre { font-size: 13px; }
         }
-		.small-tip {
-    		font-size: 12px;  /* Smaller font */
-    		color: #888;      /* Light gray color */
-    		text-align: center;  /* Center align it if you want */
-    		margin-top: 20px;  /* Add some space from the previous text */
-}
+
+        .small-tip {
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -82,10 +88,10 @@
 
 <div class="container">
     <h2>Profit Calculator</h2>
-	<h2>Team DH</h2>
+    <h2>Team DH</h2>
 
-    <label>Number of days (whole number only):</label>
-    <input type="number" id="days" min="1" step="1">
+    <label>Number of days:</label>
+    <input type="number" id="days" min="1" max="1000" step="1">
 
     <label>Initial capital:</label>
     <input type="number" id="capital" step="0.01">
@@ -93,14 +99,12 @@
     <label>Profit percentage (default 75%):</label>
     <input type="number" id="profitPercent" value="75" min="0" max="100">
 
-    <div style="display: flex; justify-content: space-between;">
-        <button onclick="calculate()">Compute</button>
-        <button onclick="clearInputs()">Clear</button>
+    <div style="display: flex; justify-content: space-between; gap: 4%;">
+        <button onclick="calculate()">Compute </button>
+        <button onclick="clearInputs()">Clear </button>
     </div>
 </div>
-</body>
 
-<footer>
 <h3>Results:</h3>
 <pre id="output"></pre>
 
@@ -110,7 +114,6 @@ function calculate() {
     let capital = parseFloat(document.getElementById("capital").value);
     let profitPercent = parseFloat(document.getElementById("profitPercent").value);
 
-    // Validation: whole number for days
     let days = parseFloat(daysInput);
     if(isNaN(days) || days <= 0 || !Number.isInteger(days)) {
         alert("Please enter a valid whole number greater than 0 for number of days.");
@@ -133,13 +136,11 @@ function calculate() {
     while(days > 0) {
         output += `Day ${day}\n`;
 
-        // Phase 1
         let i1 = capital * 0.01;
         let b1 = i1 * (profitPercent/100);
         capital += b1;
         output += `Phase 1 capital = ${capital.toFixed(2)}: profit = ${b1.toFixed(2)}\n`;
 
-        // Phase 2
         let i2 = capital * 0.01;
         let b2 = i2 * (profitPercent/100);
         capital += b2;
@@ -154,7 +155,6 @@ function calculate() {
     document.getElementById("output").textContent = output;
 }
 
-// Clear inputs function
 function clearInputs() {
     document.getElementById("days").value = "";
     document.getElementById("capital").value = "";
@@ -162,13 +162,9 @@ function clearInputs() {
     document.getElementById("output").textContent = "";
 }
 </script>
-	<p class = "small-tip">This calculator just shows the average possible profit of your capital in given days.</p>
-	<p class = "small-tip">Beej23</p>
-</footer>
 
+<p class="small-tip">This calculator shows the average possible profit of your capital in given days.</p>
+<p class="small-tip">Beej23</p>
+
+</body>
 </html>
-
-
-
-
-
